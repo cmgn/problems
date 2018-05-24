@@ -5,7 +5,7 @@ Find the product abc.
 
 generatePair :: (Integer, Integer, Integer)
 generatePair = head $ dropWhile (not . prop) [euclid m n | m <- [1..100], n <- [1..m]]
-  where euclid m n = (m^2 - n^2, 2 * m * n, m^2 + n^2 :: Integer)
+  where euclid m n = (m^2 - n^2, 2 * m * n, m^2 + n^2)
         prop (a, b, c) = a + b + c == 1000
 
 main :: IO ()
