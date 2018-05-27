@@ -1,5 +1,5 @@
 solution :: [String] -> String
-solution [a, b] = if a >= b
+solution [a, b] = if a <= b
                     then "go"
                     else "no"
 
