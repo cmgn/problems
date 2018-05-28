@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+
 n = int(input())
+
 
 for _ in range(n):
     xs = [int(x) if x else 0 for x in input().split(",")]

@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+  ios_base::sync_with_stdio(false);
   unordered_map<string, string> dict;
   string val, key, line;
   
@@ -21,5 +22,6 @@ int main()
     if (dict.count(val) != 0) cout << dict[val] << "\n";
     else cout << "eh\n";
   }
+  
   return 0;
 }
