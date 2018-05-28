@@ -28,3 +28,4 @@ def dijkstra(src, target):
                 continue
             distances[neighbour] = cost_so_far + cost
             heapq.heappush(queue, (cost_so_far + cost, neighbour))
+    return 0
