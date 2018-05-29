@@ -2,7 +2,6 @@
 #include <queue>
 #include <functional>
 #include <algorithm>
-#include <iostream>
 #include <utility>
 
 using namespace std;
@@ -81,21 +80,3 @@ struct MinimumSpanningTree {
         return {total_cost, es};
     }
 };
-
-int main()
-{
-    auto m = MinimumSpanningTree();
-    m.initialise(4);
-    m.add_edge(0, 1, 2);
-    m.add_edge(1, 3, 7);
-    m.add_edge(3, 2, 8);
-    m.add_edge(2, 0, 5);
-    m.add_edge(0, 3, 3);
-    m.add_edge(2, 1, 1);
-    auto r = m.compute_mst();
-    cout << r.cost << "\n";
-    sort(r.edges.begin(), r.edges.end());
-    for (const auto &e : r.edges)
-        cout << e.first << " " << e.second << "\n";
-    return 0;
-}

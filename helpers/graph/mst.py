@@ -54,12 +54,3 @@ class MST(object):
                 uf.union(src, dst)
             i += 1
         return -1 if i >= len(self.edges) else total_cost
-
-m = MST(4)
-m.add_edge(0, 1, 2)
-m.add_edge(1, 3, 7)
-m.add_edge(2, 3, 8)
-m.add_edge(0, 2, 5)
-m.add_edge(0, 3, 3)
-m.add_edge(1, 2, 1)
-print(m.compute_mst())
