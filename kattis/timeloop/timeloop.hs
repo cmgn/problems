@@ -1,2 +1,2 @@
 main :: IO ()
-main = interact (\x -> (unlines . map ((++" Abracadabra") . show)) [1..((read :: String -> Int) x)])
+main = interact $ unlines . map ((++" Abracadabra") . show) . enumFromTo 1 . read
