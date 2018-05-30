@@ -29,3 +29,15 @@ def dijkstra(src, target):
             distances[neighbour] = cost_so_far + cost
             heapq.heappush(queue, (cost_so_far + cost, neighbour))
     return 0
+
+
+def dijkstra(a, s):
+    d = {}
+    q = [(0, s)]
+    while q:
+        c, u = heappop(q)
+        if u in d: continue
+        d[u] = c
+        for v, w in a[u]:
+            if v not in d: heappush(q, (c + w, v))
+    return d
