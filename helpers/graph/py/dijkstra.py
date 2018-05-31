@@ -36,8 +36,10 @@ def dijkstra(a, s):
     q = [(0, s)]
     while q:
         c, u = heappop(q)
-        if u in d: continue
+        if u in d:
+            continue
         d[u] = c
         for v, w in a[u]:
-            if v not in d: heappush(q, (c + w, v))
+            if v not in d:
+                heappush(q, (c + w, v))
     return d
