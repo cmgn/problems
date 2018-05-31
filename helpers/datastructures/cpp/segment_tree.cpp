@@ -19,10 +19,8 @@ segment_tree *make(const vector<int> &v, int l, int r)
         int m = (l + r) / 2;
         res->left = make(v, l, m);
         res->right = make(v, m + 1, r);
-        if (res->left != NULL)
-            res->value += res->left->value;
-        if (res->right != NULL)
-            res->value += res->right->value;
+        if (res->left != NULL) res->value += res->left->value;
+        if (res->right != NULL) res->value += res->right->value;
     }
     return res;
 }
@@ -31,8 +29,7 @@ int make_query(segment_tree *t, int l, int r)
 {
     if (t == NULL) return 0;
     else if (l <= t->from && t->to <= r) return t->value;
-    else if (t->to < l) return 0;
-    else if (r < t->from) return 0;
+    else if (t->to < l || r < t->from) return 0;
     
     return make_query(t->left, l, r) + make_query(t->right, l, r);
 }
@@ -40,8 +37,7 @@ int make_query(segment_tree *t, int l, int r)
 int make_update(segment_tree *t, int i, int v)
 {
     if (t == NULL) return 0;
-    else if (t->to < i) return t->value;
-    else if (i < t->from) return t->value;
+    else if (t->to < i || i < t->from) return t->value;
     
     if (t->from == t->to && t->from == i)
         t->value = v;
