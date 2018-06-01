@@ -34,7 +34,7 @@ def main():
     t = int(input())
     while t:
         l = get_list_of_numbers(input())
-        n, m = len(l), sum(isprime(x) for x in l)
+        n, m = len(l), sum(is_prime(x) for x in l)
         f = str(Fraction(m, n))
         if "/" not in f:
             print(f + "/1")
