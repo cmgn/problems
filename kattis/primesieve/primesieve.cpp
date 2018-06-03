@@ -15,7 +15,7 @@ vector<bool> prime_sieve(int n)
     for (int i = 2; i < m; i++) {
         if (v[i])
             for (int j = i*i; j < n; j += i) {
-                if (v[j]) {c--;}
+                if (v[j]) c--;
                 v[j] = false;   
             }
     }
