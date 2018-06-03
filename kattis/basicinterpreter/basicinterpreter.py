@@ -46,7 +46,9 @@ def main():
     jump_labels = {}
     sorted_instructions = []
     for instruction in sys.stdin:
-        label, *rest = instruction.split()
+        split = instruction.split()
+        label = split[0]
+        rest = split[1:]
         sorted_instructions.append((label, rest))
 
     sorted_instructions.sort(key=lambda s: int(s[0]))
@@ -64,9 +66,9 @@ def main():
                 line_no = jump_labels[space_splitted_tokens[-1]]
                 continue
         elif space_splitted_tokens[0] == "PRINT":
-            print(evaluate_value(" ".join(space_splitted_tokens[1:])), end="")
+            sys.stdout.write(str(evaluate_value(" ".join(space_splitted_tokens[1:]))))
         elif space_splitted_tokens[0] == "PRINTLN":
-            print(evaluate_value(" ".join(space_splitted_tokens[1:])))
+            sys.stdout.write(str(evaluate_value(" ".join(space_splitted_tokens[1:]))) + "\n")
         line_no += 1
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-import heapq
+from heapq import heappop, heappush
 
 
 class Node(object):
@@ -17,7 +17,7 @@ def dijkstra(src, target):
     distances = {src: 0}
     queue = [(0, src)]
     while queue:
-        cost_so_far, node = heapq.heappop(queue)
+        cost_so_far, node = heappop(queue)
         if distances[node] < cost_so_far:
             continue
         elif node.value == target:
@@ -27,11 +27,11 @@ def dijkstra(src, target):
                 distances[neighbour] <= cost_so_far + cost:
                 continue
             distances[neighbour] = cost_so_far + cost
-            heapq.heappush(queue, (cost_so_far + cost, neighbour))
+            heappush(queue, (cost_so_far + cost, neighbour))
     return 0
 
 
-def dijkstra(a, s):
+def _dijkstra(a, s):
     d = {}
     q = [(0, s)]
     while q:
