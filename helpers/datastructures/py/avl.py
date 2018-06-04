@@ -100,6 +100,14 @@ class Node:
             else:
                 return self.rightleft()
         return self
+    
+    def clone(self):
+        new_node = Node(self.value)
+        if self.left:
+            new_node.left = self.left.clone()
+        if self.right:
+            new_node.right = self.right.clone()
+        return new_node
 
 
 class AVLTree:
@@ -109,8 +117,23 @@ class AVLTree:
         self.root = None
         self.size = 0
     
+    def __add__(self, other):
+        if self.size > other.size:
+            to_clone = self
+            get_from = other
+        else:
+            to_clone = other
+            get_from = self
+        clone = to_clone.clone()
+        for node in get_from.inorder():
+            clone.insert(node)
+        return clone
+    
+    def __str__(self):
+        return " ".join(map(str, self.inorder()))
+
     def insert(self, value):
-        """Insert the value into the tree"""
+        """Insert the value into the tree O(lg n)"""
         if self.root is None:
             self.root = Node(value)
             self.size = 1
@@ -124,17 +147,17 @@ class AVLTree:
         return inserted
 
     def contains(self, value):
-        """Returns a boolean indicating whether the tree contains the value"""
+        """Returns a boolean indicating whether the tree contains the value O(lg n)"""
         if self.root is None:
             return False
         return self.root.contains(value)
     
     def remove(self, value):
-        """Remove value from the tree if it exists"""
+        """Remove value from the tree if it exists O(lg n)"""
         if self.root is None:
             return self.NULL_NODE
         removed = self._remove(self.root, value)
-        if (removed is not AVLTree.NULL_NODE) or removed:
+        if removed and removed.value:
             self.size -= 1
             self.root = removed
             return True
@@ -142,12 +165,45 @@ class AVLTree:
             return False
     
     def inorder(self):
-        """Generator generating the tree values via. an inorder traversal""" 
+        """Generator generating the tree values via. an inorder traversal O(lg n)""" 
         if self.root:
             yield from self.root.inorder()
         else:
             raise ValueError("cannot perform inorder traversal"
                              " of an empty tree")
+    
+    def peek_max(self):
+        """Get the maximum value in the tree"""
+        if self.root:
+            return self.root.max().value
+        raise ValueError("cannot perform peek_max on an empty tree")
+    
+    def peek_min(self):
+        """Get the minimum value in the tree"""
+        if self.root:
+            return self.root.min().value
+        raise ValueError("cannot perform peek_min on an empty tree")
+    
+    def delete_max(self):
+        """Delete the maximum value in the tree"""
+        max_val = self.peek_max()
+        self.remove(max_val)
+        return max_val
+    
+    def delete_min(self):
+        """Delete the minimum value in the tree"""
+        min_val = self.peek_min()
+        self.remove(min_val)
+        return min_val
+
+    def clone(self):
+        """Clone the tree"""
+        if self.root:
+            new_tree = AVLTree()
+            new_tree.root = self.root.clone()
+            new_tree.size = self.size
+            return new_tree
+        raise ValueError("cannot clone an empty tree")
 
     def _insert(self, node, value):
         if node is None:
