@@ -36,6 +36,6 @@ int is_prime(llu n)
 llu prime_generator()
 {
   static llu n = 1;
-  while (!is_prime(++n));
+  while (!is_prime((n += 2)));
   return n;
 }
