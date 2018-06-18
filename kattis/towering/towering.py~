@@ -1,5 +1,0 @@
-import itertools
-
-xs = [int(x) for x in input().split()]
-blocks = xs[:6]
-height1, height2 = xs[-2:]
