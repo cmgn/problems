@@ -10,7 +10,7 @@ class Node(object):
         self.edges.append((target, cost))
 
 
-def breadth_first_search(src, to_find):
+def depth_first_search(src, to_find):
     stack = [src]
     seen = {src}
     while stack:
