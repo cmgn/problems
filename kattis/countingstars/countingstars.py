@@ -4,6 +4,7 @@ from sys import stdin
 groups = 0
 case = 1
 
+
 def floodfill(grid, i, j):
     global groups
     to_visit = [(i, j)]
