@@ -24,7 +24,6 @@ def main():
                     break
             else:
                 print("white")
-                
 
 
 if __name__ == "__main__":
