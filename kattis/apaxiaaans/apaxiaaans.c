@@ -10,8 +10,8 @@ int main()
     int pos = 0;
 
     while (*p) {
-    output[pos++] = *p;
-    while (*p && *p == *++p);
+        output[pos++] = *p;
+        while (*p && *p == *++p);
     }
 
     printf("%s\n", output);
