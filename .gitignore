@@ -26,3 +26,4 @@ cabal.project.local~
 __pycache__
 doodle
 *.*~
+node_modules
